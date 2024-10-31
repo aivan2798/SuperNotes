@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-
+import './Dashboard.js'
+import Dashboard from './Dashboard';
 function App() {
   return (
     <div className="App">
@@ -22,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default Dashboard;

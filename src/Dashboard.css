@@ -1,0 +1,326 @@
+body{
+    background-color: black;
+}
+.dashboard_body{
+    /*background: rgb(2,0,36);*/
+    /*background: radial-gradient(90deg, rgba(2,0,36,1) 0%, rgba(3,2,2,1) 35%, rgba(12,41,47,1) 71%);*/
+    background: linear-gradient(rgb(0, 0, 0) , rgb(1, 0, 3), rgb(2, 1, 11),rgb(0, 0, 0));
+    /*radial-gradient(rgba(2,0,36,1) , rgba(3,2,2,1), rgba(12,41,47,1));*/
+    height:100vh;
+    width: 100%;
+    font-family: 'monospace';
+    font-size: 12
+}
+
+.dashboard_header_text{
+    font-size: x-large;
+    font-style: oblique;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:cornsilk;
+    padding-top: 5px;
+    padding-left: 5px;
+    background-color: transparent;
+    grid-area: main_title;
+    margin-left: 10px;
+}
+
+
+.supernotes_main{
+   display: grid;
+   column-gap: px;
+   grid-template-areas: 'side_body search_body share_side_body';
+   grid-template-columns: 18% auto 18%;
+   height: 90%;
+   width: 100%;
+   gap: 5px;
+}
+
+
+.sidebar_header{
+    font-size: medium;
+    font-style: oblique;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:cornsilk;
+    padding-top: 5px;
+    font-weight: bolder;
+    text-align: center;
+    width: 100%;
+    
+    /*padding-left: 5px;*/
+    background-color: transparent;
+}
+
+.sidebar_body{
+    border: 1px solid rgb(76, 69, 69);
+    margin-left: 10px;
+    overflow-y: auto;
+    grid-area: side_body;
+}
+
+.share_sidebar_body{
+        border: 1px solid rgb(76, 69, 69);
+        margin-right: 10px;
+        
+        overflow-y: auto;
+        grid-area: share_side_body;
+}
+
+.loading_anim{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.share_sidebar_header{
+    font-size: medium;
+    font-style: oblique;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:cornsilk;
+    padding-top: 5px;
+    font-weight: bolder;
+    text-align: center;
+    width: 100%;
+    
+    /*padding-left: 5px;*/
+    background-color: transparent;
+}
+
+.notesearch_body{
+    font-size: medium;
+    font-style: oblique;
+    border: 1px solid rgb(76, 69, 69);
+    color:cornsilk;
+    width: 100%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+    grid-area: search_body;
+}
+
+.notesearch_header{
+    font-size: medium;
+    font-style: oblique;
+    font-weight: bolder;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:cornsilk;
+    padding: 5px;
+    width:80%;
+    /*margin-left: 20%;*/
+    /*padding-left: 5px;*/
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+
+.note_input_holder:hover{
+    border: 2px solid rgb(1, 1, 23);;
+    box-shadow: 5px 5px 10px 5px rgb(1, 1, 23);;
+}
+
+.search_notes{
+    width: 80%;
+    text-align: center;
+}
+
+.dashboard_header{
+    width: 100%;
+    display: grid;
+    background-color: black;
+    grid-template-areas: 'main_title main_top_logo' 'tagline tagline';
+    grid-template-columns: 20% auto 10%;
+}
+
+.pen_icon:hover{
+    color: brown;
+}
+
+
+
+.pen_loading{
+    animation: loading_rotator 2s infinite;
+}
+
+.brain_loading{
+    animation: loading_rotator 2s infinite;
+    color: brown;
+}
+
+.dashboard_tagline_text{
+    font-size: medium;
+    font-style: oblique;
+    /*border: 1px solid rgb(76, 69, 69);*/
+    color:cornsilk;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    background-color: black;
+    grid-area: tagline;
+    /*margin-right: 10px;*/
+    margin-left: 10px;
+}
+
+.main_top_logo{
+    text-align: center;
+    grid-area: main_top_logo;
+    color:cornsilk;
+    animation: colorup 3s alternate-reverse infinite;
+    font-size: xx-large;
+}
+
+.reg_status{
+    color: green;
+}
+
+.main_logout_btn{
+    
+    color:white;
+    
+}
+
+.new_note_textarea{
+    height: 50px;
+    width: 300px;
+    grid-area: new_note_textarea;
+}
+
+.btn_stack{
+    width: 80%;
+    text-align: center;
+}
+
+.main_footer{
+    width: 70%;
+    grid-area: footer;
+    position: fixed;
+    bottom: 50px;
+    
+    
+}
+
+.note_side_view{
+    /*background-color: rgb(60, 59, 59);*/
+    overflow-y: hidden;
+    overflow-x: hidden;
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 12px;
+    font-family: monospace;
+    margin-right: 10px;
+}
+
+.note_item:hover{
+    background-color: rgb(83, 65, 65);
+}
+
+.refresh_icon:hover{
+    box-shadow: 0 4px 10px white;
+    border-radius: 20px;
+}
+
+.item_stack{
+    /*background-color: blue;*/
+}
+
+.upload_summary{
+    height: 50px;
+    width: 50px;
+    display: block;
+    overflow: hidden;
+    border: 2px solid rgb(16, 12, 12);
+}
+
+.active_note{
+    border: 2px solid rgb(16, 12, 12);
+    border-radius: 2px;
+    margin: 10px;
+    width: 80%;
+    background-color: transparent;
+    max-height: 200px;
+    color:azure;
+    overflow-y: auto;
+    padding: 20px;
+    scroll-behavior: smooth;
+    white-space: pre-wrap;
+}
+
+.upload_btn{
+    /*background-color: rgb(249, 14, 14);*/
+    width: 50%;
+    
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    /*background-color: blue;*/
+}
+
+.upload_item_div{
+    
+}
+
+.login_div_header{
+    text-align: center;
+    color: white;
+}
+
+.login_div{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: white;
+    
+}
+
+.onboarding_body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    color: white;
+}
+
+.onboarding_items{
+    border: 2px solid white;
+    padding: 50px;
+}
+
+.registration_div_inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    color: white;
+}
+
+.login_input{
+    background-color: rgb(0, 0, 0);
+    border-color: 2px solid rgb(245, 4, 4);
+}
+
+
+.file_upload_icon{
+    position: absolute;
+    
+}
+
+.file_plus_icon{
+    position: inherit;
+    left: 10px;
+    top: 10px;
+}
+
+@keyframes colorup{
+    0% { color: black;}
+    100% { color:cornsilk;}
+}
+
+@keyframes loading_rotator {
+    0% {rotate: 0deg;}
+    25% {rotate: 90deg;}
+    50% {rotate: 180deg;}
+    75% {rotate: 270deg;}
+    100% {rotate: 0deg;}
+}
