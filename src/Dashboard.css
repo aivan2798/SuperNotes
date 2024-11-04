@@ -160,6 +160,10 @@ body{
     margin-left: 10px;
 }
 
+.team_dialog{
+    background-color: black;
+}
+
 .main_top_logo{
     text-align: center;
     grid-area: main_top_logo;

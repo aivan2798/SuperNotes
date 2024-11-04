@@ -21,10 +21,19 @@ import SearchBar from "material-ui-search-bar";
 import { Alert, FilledInput, FormControl, Icon, Input, InputAdornment, InputLabel, OutlinedInput, useColorScheme } from '@mui/material';
 import { FaPenAlt, FaBrain, FaSyncAlt, FaFileUpload, FaPlusCircle, FaBullseye, FaSearch } from "react-icons/fa";
 import { BsFileEarmark } from "react-icons/bs";
-import { FaFileCirclePlus, FaRegTrashCan, FaRegPenToSquare, FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FaFileCirclePlus,FaCircleXmark, FaRegTrashCan,FaEnvelope, FaRegPenToSquare, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { CgAddR } from "react-icons/cg";
 import { FourSquare, ThreeDot, Riple } from 'react-loading-indicators';
 import { AiFillPropertySafety } from 'react-icons/ai';
+
+
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+
+
+import Typography from '@mui/material/Typography';
 
 
 const client = new Client();
@@ -363,6 +372,125 @@ async function login(loadingSetter){
     }
 }
 
+
+
+function AddTeamPage(){
+
+    const [user_email, setEmail] = useState("");
+    const [user_password, setPassword] = useState("");
+    const [reg_state,setRegState] = useState(false);
+    const [reg_status,setRegStatus] = useState("");
+
+    const [showPassword, setShowPassword] = useState(false);
+    const makeAccount = ()=>{
+       setRegState(true);
+       const login_promise = account.create('unique()',user_email,user_password);
+       
+       login_promise.then(function (response) {
+        current_user = response;
+        window.localStorage.setItem("session",current_user);
+        
+        console.log(response); // Success
+        setRegStatus("Account Created, Continue to login");
+        setRegState(false);
+    }, function (error) {
+        console.log("Error is: "+error); // Failure
+        setRegStatus(error.message);
+        setRegState(false);
+    });
+    
+    }
+    
+    return(
+        <div className="registration_div">
+                
+                
+                    <div className="login_div_header" sx={{fontFamily: 'monospace', fontSize: 12}}> Don't have an account,<br/> please create one below </div>
+                    <div className="registration_div_inputs">
+                        <div className="registration_body">
+                            <InputLabel htmlFor="outlined-email" sx={{color:'white',fontFamily: 'monospace', fontSize: 12, fontWeight: 'bolder'}}>
+                                Team Name
+                            </InputLabel>
+                            <OutlinedInput id='outlined-email' value={user_email} variant="filled" label="Email" onChange={(e) => {
+                                setEmail(e.target.value);
+                            }} multiline={false} maxRows={1} sx={{backgroundColor:'white', width:250, ml: 5, flex: 'flex-grow', fontFamily: 'monospace', fontSize: 12, fontWeight: 'bolder' }} placeholder="Team Name here"/>
+                            <br/>
+                        
+                            <InputLabel htmlFor="outlined-password" sx={{color:'white',fontFamily: 'monospace', fontSize: 12, fontWeight: 'bolder'}}>
+                                USER EMAIL
+                            </InputLabel>
+                            <OutlinedInput id="outlined-password" value={user_password} height='20px' label="User Email" 
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                      <FaEnvelope />
+                                    </InputAdornment>
+                                  }
+                                onChange={(e) => {
+                                setPassword(e.target.value);
+                            }} multiline={false} maxRows={1} sx={{backgroundColor:'white',width:250, ml: 5, flex: 'flex-grow', fontFamily: 'monospace', fontSize: 12, fontWeight: 'bolder' }} placeholder="Email here"/>
+                            <br/>
+                            <div className="reg_status">{reg_status}</div>
+                            <Button sx={{bgcolor: 'darkblue', ml: 5,height:'55px', fontWeight: 'bolder'}} 
+                                startIcon={(reg_state===false)? <FaPenAlt />:<FaPenAlt className='pen_loading'/>}
+                                onClick={makeAccount} 
+                                className="add_note_btn" 
+                                variant="contained">
+                                    ADD USER
+                            </Button>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                
+                
+            </div>
+    );
+}
+
+
+
+function CollectionDialog(){
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    return (
+        <>
+            <Button variant="outlined" onClick={handleClickOpen}>
+                 Add Team
+            </Button>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                <DialogTitle sx={{ m: 0, p: 2, backgroundColor:'darkblue',color:'white' }} id="customized-dialog-title">Add Team</DialogTitle>
+            <IconButton aria-label="close" onClick={handleClose}
+                sx={(theme) => ({
+                                    position: 'absolute',
+                                    right: 8,
+                                    top: 8,
+                                    color: theme.palette.grey[500],
+                                })}>
+          <FaCircleXmark />
+        </IconButton>
+        <DialogContent className='team_dialog' dividers>
+          <AddTeamPage/>
+        </DialogContent>
+        <DialogActions sx={{ m: 0, p: 2, backgroundColor:'darkblue',color:'white' }}>
+          <Button sx={{ backgroundColor:'black',color:'white' }} autoFocus onClick={handleClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}
+
 function Dashboard(){
     
     const [finished_loading,setAuthLoading] = useState(false);
@@ -397,6 +525,7 @@ function Dashboard(){
                      <FaBrain/>
                 </div>
                 <div className="main_logout_btn">
+                    <CollectionDialog/>
                     <Button sx={{bgcolor: 'darkblue', ml: 5, fontWeight: 'bolder'}} onClick={logout} className="add_note_btn" variant="contained">
                         LOGOUT
                     </Button>
